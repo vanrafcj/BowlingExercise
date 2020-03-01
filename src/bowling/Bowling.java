@@ -4,14 +4,16 @@ import java.util.Scanner;
 
 public class Bowling {
 
+	// Simple command line input using System.in and System.out
+	// Can be swapped out with any type of User input
 	public static void main(String[] args) {
 		String input;
-		if (args.length == 0) {
+		if (args.length == 0) { // User input
 			Scanner lineIn = new Scanner(System.in);
 			System.out.print("Enter your bowl string: ");
 			input = lineIn.nextLine();
 			lineIn.close();
-		} else {
+		} else { // Command Line arguments as input 
 			System.out.print("Your inputted bowl String: " + args[0]);
 			input = args[0];
 		}
@@ -23,6 +25,10 @@ public class Bowling {
 			return -1;
 		}
 
+		// Iterates until 10 FRAMES have elapsed
+		// One strike counts as one frame
+		// One spare counts as one frame (as spares can only occur at the end of a frame)
+		// Two consecutive digits count as one frame
 		int totalScore = 0;
 		int frameCounter = 0;
 		int i = 0;
@@ -51,11 +57,13 @@ public class Bowling {
 		}
 		return totalScore;
 	}
-	private static int sumOfNextNums(String input, int numOfInts) {
+	// Loops over the input String until receives enough valid bowls (X, /, or #) 
+	// then outputs the sum of valid bowls
+	private static int sumOfNextNums(String input, int numOfThrows) {
 		int output = 0;
 		int validNums = 0;
 		int j = 1;
-		while (validNums < numOfInts) {
+		while (validNums < numOfThrows) {
 			if (Character.isDigit(input.charAt(j))) {
 				validNums++;
 				output += (input.charAt(j)-'0');
